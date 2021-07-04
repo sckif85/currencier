@@ -2,7 +2,6 @@
 
 namespace App\Tests\Http;
 
-use App\Http\CurrencyRegistryApiClientFactory;
 use App\Http\CurrencyRegistryApiClientInterface;
 use App\Http\Model\RegistryCurrency;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;

@@ -51,7 +51,7 @@ class ConverterController extends AbstractController
         ]);
 
         if (is_null($currency)) {
-            throw new Exception(sprintf('CURRENCY "%s" IS NOT EXISTS IN SERVICE', $currencyName));
+            throw new Exception(sprintf('CURRENCY [%s] IS NOT EXISTS IN SERVICE', $currencyName));
         }
 
         return $currency;
