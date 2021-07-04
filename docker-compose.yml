@@ -1,0 +1,33 @@
+version: '3.4'
+
+services:
+    db:
+        image: "postgres:10.5-alpine"
+        ports:
+            -   mode: host
+                protocol: tcp
+                published: 5432
+                target: 5432
+        environment:
+            POSTGRES_PASSWORD: postgres
+            PGDATA: /var/lib/postgresql/data/pgdata
+        volumes:
+            - /Users/sckif/Docker/Currencier/Data:/var/lib/postgresql/data/pgdata
+    fpm:
+        build:
+            context: images/fpm
+        volumes:
+            - .:/var/www
+    nginx:
+        image: "nginx:1.15-alpine"
+        restart: always
+        depends_on:
+            - fpm
+        ports:
+            -   mode: host
+                protocol: tcp
+                published: 80
+                target: 80
+        volumes:
+            - ./public:/var/www/public
+            - ./images/nginx/config:/etc/nginx/conf.d
